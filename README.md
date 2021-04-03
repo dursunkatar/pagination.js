@@ -1,7 +1,9 @@
 # pagination.js
 
+![pagination](https://github.com/dursunkatar/pagination.js/blob/main/screenshot.png)
+
 #### *Kullanımı
 
 
 
-![pagination](https://github.com/dursunkatar/pagination.js/blob/main/screen.png)
+
