@@ -2,6 +2,7 @@
  *          Dursun Katar           *
  *         dursunkatar.com         *
  *       github.com/dursunkatar    *
+ *           version 1.1           *
  *                                 *
  ***********************************/
 var PaginationConfig = /** @class */ (function () {
@@ -44,15 +45,17 @@ var Pagination = /** @class */ (function () {
     Pagination.prototype.build = function (arr) {
         var url = this.config.Url;
         var parent = document.getElementById(this.config.ParentDivId);
+        console.log(this.currentPageIndex);
         if (this.currentPageIndex > 1) {
-            parent.insertAdjacentHTML('beforeend', this.config.ArrowLeftHtml.replace('{0}', "" + url + (this.currentPageIndex - 1)));
+            parent.insertAdjacentHTML('beforeend', this.config.ArrowLeftHtml.replace('{0}',  (this.currentPageIndex - 1)));
         }
         for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
             var pageIndex = arr_1[_i];
-            parent.insertAdjacentHTML('beforeend', "<a class=\"" + (this.currentPageIndex === pageIndex ? 'active' : '') + "\" href=\"" + url + pageIndex + "\">" + pageIndex + "</a>");
+            if (pageIndex)
+            parent.insertAdjacentHTML('beforeend', `<a data-page="${pageIndex}" class="btn btn-${(this.currentPageIndex === pageIndex ? 'success' : 'default')}">${pageIndex}</a>`);
         }
-        if (this.currentPageIndex + 1 < this.pageButtonCount) {
-            parent.insertAdjacentHTML('beforeend', this.config.ArrowRightHtml.replace('{0}', "" + url + (this.currentPageIndex + 1)));
+        if (this.currentPageIndex < this.pageButtonCount) {
+            parent.insertAdjacentHTML('beforeend', this.config.ArrowRightHtml.replace('{0}', (this.currentPageIndex + 1)));
         }
     };
     Pagination.prototype.addRightRsidualPageNumber = function (pageIndex) {
@@ -70,7 +73,6 @@ var Pagination = /** @class */ (function () {
             if (++pageIndex > this.pageButtonCount) {
                 return;
             }
-            console.log("pageIndex=" + pageIndex);
             this.pageButtons.push(pageIndex);
         }
     };
@@ -87,4 +89,3 @@ var Pagination = /** @class */ (function () {
     };
     return Pagination;
 }());
-//# sourceMappingURL=pagination.js.map
